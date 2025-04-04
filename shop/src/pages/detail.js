@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 
 // 컴포넌트의 LifeCycle
@@ -12,16 +12,23 @@ const Detail = ({shoes}) => {
     let [visible, setVisible] = useState(true);
 
     // useEffect 쓰는 이유 : html 렌더링이 다 되고나서 동작
-    // 어려운 연산/ 서버에서 데이터 가져오는 작업/ 타이머 장착하는 거거
+    // 어려운 연산/ 서버에서 데이터 가져오는 작업/ 타이머 장착하는 거
+
     useEffect(()=>{
+        
         console.log('안녕');
-        setTimeout(()=>{setVisible(false)},2000);
+        let timer = setTimeout(()=>{setVisible(false)},2000);
+        return()=>{
+            console.log(1);
+            clearTimeout(timer);
+
+        }
     },[])
 
     const { id } = useParams();
-    console.log(id);
+    // console.log(id);
     const numCheck = isNaN(id);
-    console.log(numCheck)
+    // console.log(numCheck)
 
     const shoeDetail = shoes.find((shoe)=>{
         return shoe.id == id

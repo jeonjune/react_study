@@ -29,6 +29,7 @@ function App() {
       </Navbar>
 
       <Routes>
+        
         <Route path='/' element={<Main shoes={shoes}/>}/>
         <Route path='*' element={<div>404 ERROR</div>}/>
         
